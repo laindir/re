@@ -7,7 +7,7 @@ main(int argc, char *argv[])
 	re *p;
 	char buf[1024];
 	FILE *fp;
-	int any = 0;
+	int any = 1;
 
 	switch(argc)
 	{
@@ -32,7 +32,7 @@ main(int argc, char *argv[])
 	{
 		if(match(p, buf, NULL))
 		{
-			any = 1;
+			any = 0;
 			fputs(buf, stdout);
 		}
 	}
