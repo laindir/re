@@ -35,7 +35,7 @@ dot(re *re, char *str)
 {
 	(void)re;
 
-	if(*str)
+	if(*str != '\n')
 	{
 		return str + 1;
 	}
