@@ -17,27 +17,6 @@ char *concat(re *, char *);
 char *altern(re *, char *);
 char *star(re *, char *);
 
-void
-render(re *r)
-{
-	if(!r)
-	{
-		return;
-	}
-
-	render(r->lre);
-	render(r->rre);
-
-	if(r->match == literal)
-		printf("%c ", r->lch);
-	if(r->match == concat)
-		printf("concat ");
-	if(r->match == altern)
-		printf("altern ");
-	if(r->match == star)
-		printf("star ");
-}
-
 char *
 literal(re *re, char *str)
 {
@@ -203,27 +182,27 @@ parse(char *regex)
 	return p;
 }
 
-int
-main(int argc, char *argv[])
+char *
+match(re *re, char *str, char **endp)
 {
-	re *p;
-	char *s = argv[1];
-	char *t;
+	char *e;
 
-	if(argc != 2)
+	while(str && *str && !e)
 	{
-		return 1;
+		e = re->match(re, str++);
 	}
 
-	p = parse("ab(cd|ef*)(gh)*");
-
-	for(s = argv[1]; s && *s && !t; s++)
+	if(endp)
 	{
-		t = p->match(p, s);
+		*endp = e;
 	}
 
-	puts(t ? t : "no match");
-
-	return 0;
+	if(e)
+	{
+		return str;
+	}
+	else
+	{
+		return NULL;
+	}
 }
-	
