@@ -1,3 +1,7 @@
+This is a proof of concept regex compiler/executor. It should NOT be used in
+production. It does not adhere to any particular standard and is guaranteed to
+have severe shortcomings.
+
 #Regular Expressions
 
 Regular expressions are a syntax for describing regular languages. These are
@@ -16,10 +20,11 @@ The dot matches any character.
 The star operatior indicates that the preceding subexpression may be repeated
 zero or more times to be matched by the star.
 
-##\( and \)
-Parentheses escaped with a backslash group tokens into a subexpression.
+##( and )
+Parentheses group tokens into a subexpression.
 
 ##\{x,y\}
+###Not Implemented
 Braces escaped with a backslash indicate that the preceding subexpression may
 be repeated at least x times but not more than y times. If y is omitted, the
 subexpression may be matched x or more times. If y and the comma are omitted,
