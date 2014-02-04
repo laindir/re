@@ -166,6 +166,10 @@ parse(char *regex)
 			push(new(altern, p, NULL, 0, 0));
 			p = new(empty, NULL, NULL, 0, 0);
 			break;
+		case '.':
+			p = new(concat, p, NULL, 0, 0);
+			p->rre = new(dot, NULL, NULL, 0, 0);
+			break;
 		default:
 			p = new(concat, p, NULL, 0, 0);
 			p->rre = new(literal, NULL, NULL, *regex, 0);
